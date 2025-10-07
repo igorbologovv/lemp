@@ -31,7 +31,11 @@ def time_now():
         host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME,
     )
     cur = conn.cursor()
+
     cur.execute("SELECT NOW()")  # серверное время MySQL
+
     row = cur.fetchone()
+
     cur.close(); conn.close()
+
     return jsonify(server_time=str(row[0]))
